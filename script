@@ -1,0 +1,74 @@
+-- Create the ScreenGui
+local gui = Instance.new("ScreenGui")
+gui.Name = "KeyboardScriptsGui"
+gui.Parent = game.Players.LocalPlayer.PlayerGui
+
+-- Create the main frame
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0, 200, 0, 190)
+mainFrame.Position = UDim2.new(0.5, -100, 0.5, -100)
+mainFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Parent = gui
+
+-- Create title label
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Name = "TitleLabel"
+titleLabel.Size = UDim2.new(1, 0, 0, 20)
+titleLabel.Position = UDim2.new(0, 0, 0, 0)
+titleLabel.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+titleLabel.BorderSizePixel = 0
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.Text = "Keyboard Scripts"
+titleLabel.Font = Enum.Font.SourceSans
+titleLabel.TextSize = 16
+titleLabel.Parent = mainFrame
+
+-- Define script URLs
+local scripts = {
+    ["Keyboard Script V1"] = "https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt",
+    ["Keyboard Script V2"] = "https://raw.githubusercontent.com/BatuKvi123/Keyboardv3/main/mobKeyboard",
+    ["Keyboard Script V3"] = "https://gist.githubusercontent.com/RedZenXYZ/4d80bfd70ee27000660e4bfa7509c667/raw/da903c570249ab3c0c1a74f3467260972c3d87e6/KeyBoard%2520From%2520Ohio%2520Fr%2520Fr"
+}
+
+-- Create buttons for each script
+local yOffset = 30  -- Initial vertical offset
+for name, url in pairs(scripts) do
+    local button = Instance.new("TextButton")
+    button.Name = "ScriptButton_"..name
+    button.Size = UDim2.new(0, 180, 0, 40)
+    button.Position = UDim2.new(0, 10, 0, yOffset)
+    button.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+    button.BorderSizePixel = 0
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.Text = name
+    button.Font = Enum.Font.SourceSans
+    button.TextSize = 14
+    button.Parent = mainFrame
+
+    button.MouseButton1Click:Connect(function()
+        loadstring(game:HttpGet(url, true))()
+        print("Script Executed: "..name)
+    end)
+
+    yOffset = yOffset + 50  -- Increase vertical offset for next button
+end
+
+-- Create close button
+local closeButton = Instance.new("TextButton")
+closeButton.Name = "CloseButton"
+closeButton.Size = UDim2.new(0, 20, 0, 20)
+closeButton.Position = UDim2.new(1, -20, 0, 0)
+closeButton.BackgroundColor3 = Color3.fromRGB(255, 50, 50)
+closeButton.BorderSizePixel = 0
+closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeButton.Text = "X"
+closeButton.Font = Enum.Font.SourceSans
+closeButton.TextSize = 14
+closeButton.Parent = titleLabel
+
+closeButton.MouseButton1Click:Connect(function()
+    gui:Destroy()
+end)
