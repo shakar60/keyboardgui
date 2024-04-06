@@ -5,8 +5,8 @@ gui.Parent = game.Players.LocalPlayer.PlayerGui
 
 -- Create the main frame
 local mainFrame = Instance.new("Frame")
-mainFrame.Size = UDim2.new(0, 200, 0, 150) -- Adjusted height
-mainFrame.Position = UDim2.new(0.5, -100, 0.5, -75) -- Adjusted position
+mainFrame.Size = UDim2.new(0, 200, 0, 180) -- Adjusted height
+mainFrame.Position = UDim2.new(0.5, -100, 0.5, -90) -- Adjusted position
 mainFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
 mainFrame.BorderSizePixel = 0
 mainFrame.Active = true
