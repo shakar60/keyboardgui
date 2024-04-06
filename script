@@ -35,7 +35,8 @@ local scripts = {
 
 -- Create buttons for each script
 local yOffset = 30  -- Initial vertical offset
-for name, url in pairs(scripts) do
+local orderedScripts = {"Keyboard Script V1", "Keyboard Script V2", "Keyboard Script V3"}
+for _, name in ipairs(orderedScripts) do
     local button = Instance.new("TextButton")
     button.Name = "ScriptButton_"..name
     button.Size = UDim2.new(0, 180, 0, 40)
@@ -49,7 +50,7 @@ for name, url in pairs(scripts) do
     button.Parent = mainFrame
 
     button.MouseButton1Click:Connect(function()
-        loadstring(game:HttpGet(url, true))()
+        loadstring(game:HttpGet(scripts[name], true))()
         print("Script Executed: "..name)
     end)
 
